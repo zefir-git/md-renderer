@@ -6,6 +6,12 @@ on:
 
 permissions:
   packages: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 env:
   IMAGE_NAME: renderer
@@ -31,6 +37,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Set version from release tag
+        run: npm version ${{ github.event.release.tag_name }} --git-tag-version=false
+
       - name: Vite build
         run: npm run build
 
@@ -48,3 +57,18 @@ jobs:
           VERSION=${TAG#v}
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
+
+      - name: Set up GitHub pages
+        if: "!github.event.release.prerelease"
+        uses: actions/configure-pages@v5
+
+      - name: Upload to GitHub pages
+        if: "!github.event.release.prerelease"
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Deploy to GitHub pages
+        if: "!github.event.release.prerelease"
+        id: deployment
+        uses: actions/deploy-pages@v4
