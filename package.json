@@ -6,7 +6,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.0.12",
+    "@tailwindcss/vite": "^4.0.14",
     "typescript": "^5.8.2",
     "vite": "^6.2.1",
     "vite-plugin-html": "^3.2.2"
