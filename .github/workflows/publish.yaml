@@ -64,7 +64,7 @@ jobs:
 
       - name: Upload to GitHub pages
         if: "!github.event.release.prerelease"
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: dist
 
