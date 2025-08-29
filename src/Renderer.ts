@@ -1,6 +1,7 @@
 import {Component, NodeComponent} from "@cldn/components";
 import markdownit from "markdown-it";
 import anchor from "markdown-it-anchor";
+import deflist from "markdown-it-deflist";
 import Lucide from "./lucide";
 
 export default class Renderer {
@@ -39,6 +40,7 @@ export default class Renderer {
                     class: "not-prose hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-blue-600 dark:focus-visible:outline-blue-500 focus-visible:underline",
                 }),
             })
+            .use(deflist)
             .render(markdown);
         this.article.html`${md}`;
 
