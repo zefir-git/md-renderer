@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@cldn/components": "^4.1.1",
-    "@tailwindcss/typography": "^0.5.16",
+    "@tailwindcss/typography": "^0.5.18",
     "markdown-it": "^14.1.0",
     "markdown-it-anchor": "^9.2.0",
     "markdown-it-deflist": "^3.0.0"
